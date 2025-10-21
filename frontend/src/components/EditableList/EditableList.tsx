@@ -1,16 +1,22 @@
+import type { ProfileListField } from "../../types/profile";
 import styles from "./EditableList.module.css";
 
-function EditableList({ field, items, placeholder, onItemChange, onRemove, validator }) {
-  if (!Array.isArray(items)) {
-    return null;
-  }
+interface EditableListProps {
+  field: ProfileListField;
+  items: string[];
+  placeholder: string;
+  onItemChange: (field: ProfileListField, index: number, value: string) => void;
+  onRemove: (field: ProfileListField, index: number) => void;
+  validator?: (value: string) => boolean;
+}
 
+function EditableList({ field, items, placeholder, onItemChange, onRemove, validator }: EditableListProps): JSX.Element {
   return (
     <ul className={styles.list}>
       {items.map((value, index) => {
-        const trimmedValue = typeof value === "string" ? value.trim() : "";
+        const trimmedValue = value.trim();
         const isValid = validator ? validator(trimmedValue) : true;
-        const itemClassName = [styles.item, !isValid ? styles.invalid : null].filter(Boolean).join(" ");
+        const itemClassName = [styles.item, !isValid ? styles.invalid : ""].filter(Boolean).join(" ");
 
         return (
           <li key={`${field}-${index}`} className={itemClassName}>
@@ -28,7 +34,7 @@ function EditableList({ field, items, placeholder, onItemChange, onRemove, valid
         );
       })}
       {items.length === 0 && (
-        <li className={[styles.item, styles.emptyItem].join(" ")}>
+        <li className={`${styles.item} ${styles.emptyItem}`}>
           <em>No entries yet. Use the add button to create one.</em>
         </li>
       )}

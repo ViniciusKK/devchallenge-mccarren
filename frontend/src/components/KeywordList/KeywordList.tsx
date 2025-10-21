@@ -1,7 +1,20 @@
+import type { ProfileListField } from "../../types/profile";
 import EditableList from "../EditableList/EditableList";
 import styles from "./KeywordList.module.css";
 
-function KeywordList({ title, field, items, placeholder, onItemChange, onAdd, onRemove }) {
+type KeywordField = Extract<ProfileListField, "tier1_keywords" | "tier2_keywords">;
+
+interface KeywordListProps {
+  title: string;
+  field: KeywordField;
+  items: string[];
+  placeholder: string;
+  onItemChange: (field: ProfileListField, index: number, value: string) => void;
+  onAdd: (field: ProfileListField) => void;
+  onRemove: (field: ProfileListField, index: number) => void;
+}
+
+function KeywordList({ title, field, items, placeholder, onItemChange, onAdd, onRemove }: KeywordListProps): JSX.Element {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>

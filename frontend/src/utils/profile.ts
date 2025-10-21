@@ -1,4 +1,4 @@
-export function normalizeServiceLines(value) {
+export function normalizeServiceLines(value: unknown): string[] {
   if (Array.isArray(value)) {
     const sanitized = dedupeStrings(value);
     return sanitized.length > 0 ? sanitized : [""];
@@ -23,7 +23,7 @@ export function normalizeServiceLines(value) {
   return [""];
 }
 
-export function normalizeStringArray(value) {
+export function normalizeStringArray(value: unknown): string[] {
   if (Array.isArray(value)) {
     return dedupeStrings(value);
   }
@@ -39,8 +39,8 @@ export function normalizeStringArray(value) {
   return [];
 }
 
-export function splitServiceLine(line) {
-  const trimmed = typeof line === "string" ? line.trim() : "";
+export function splitServiceLine(line: string): string[] {
+  const trimmed = line.trim();
   if (!trimmed) return [];
 
   const parts = trimmed
@@ -51,9 +51,9 @@ export function splitServiceLine(line) {
   return parts.length > 0 ? parts : [trimmed];
 }
 
-export function dedupeStrings(values) {
-  const seen = new Set();
-  const result = [];
+export function dedupeStrings(values: Array<unknown>): string[] {
+  const seen = new Set<string>();
+  const result: string[] = [];
 
   values.forEach((item) => {
     const trimmed = typeof item === "string" ? item.trim() : "";

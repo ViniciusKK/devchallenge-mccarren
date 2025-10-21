@@ -1,7 +1,19 @@
+import type { CompanyProfileState, ProfileEditableField, ProfileListField } from "../../types/profile";
 import EditableList from "../EditableList/EditableList";
 import KeywordList from "../KeywordList/KeywordList";
 import Panel from "../Panel/Panel";
 import styles from "./CompanyProfile.module.css";
+
+interface CompanyProfileProps {
+  profile: CompanyProfileState;
+  serviceSplitMessage: string;
+  onReset: () => void;
+  onFieldChange: (field: ProfileEditableField, value: string) => void;
+  onListChange: (field: ProfileListField, index: number, value: string) => void;
+  onAddListItem: (field: ProfileListField) => void;
+  onRemoveListItem: (field: ProfileListField, index: number) => void;
+  onSmartSplit: () => void;
+}
 
 function CompanyProfile({
   profile,
@@ -12,9 +24,7 @@ function CompanyProfile({
   onAddListItem,
   onRemoveListItem,
   onSmartSplit
-}) {
-  if (!profile) return null;
-
+}: CompanyProfileProps): JSX.Element {
   return (
     <Panel className={styles.card}>
       <header className={styles.header}>
@@ -54,7 +64,7 @@ function CompanyProfile({
           />
         </div>
 
-        <div className={[styles.field, styles.fullWidth].join(" ")}>
+        <div className={`${styles.field} ${styles.fullWidth}`}>
           <label className={styles.label} htmlFor="companyDescription">
             Company description
           </label>
@@ -75,7 +85,7 @@ function CompanyProfile({
           <div>
             <h3>Service lines</h3>
             <p className={styles.hint}>Represent each distinct offering. Use the smart split to break up long sentences.</p>
-            {serviceSplitMessage && <p className={[styles.hint, styles.muted].join(" ")}>{serviceSplitMessage}</p>}
+            {serviceSplitMessage && <p className={`${styles.hint} ${styles.muted}`}>{serviceSplitMessage}</p>}
           </div>
           <div className={styles.sectionActions}>
             <button type="button" className={styles.ghostButton} onClick={onSmartSplit}>

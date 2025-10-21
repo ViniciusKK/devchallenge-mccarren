@@ -1,21 +1,51 @@
-.title {
-  font-size: 2.25rem;
-  font-weight: 700;
+.panel {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  padding: 2.5rem 2.75rem;
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0));
 }
 
-.lead {
-  margin: 0.75rem 0 1.5rem;
-  color: #475569;
-}
-
-.form {
+.copy {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
+.eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.title {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.title span {
+  display: block;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.lead {
+  margin: 0;
+  color: #4b5563;
+  font-size: 1.05rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
 .label {
   font-weight: 600;
+  color: #1f2937;
 }
 
 .inputRow {
@@ -26,17 +56,28 @@
 
 .hint {
   margin: 0;
-  color: #64748b;
+  color: #6b7280;
   font-size: 0.9rem;
 }
 
 .error {
-  margin: 0.75rem 0 0;
-  color: #dc2626;
+  margin: 1rem 0 0;
+  color: #d9463b;
   font-weight: 600;
 }
 
+@media (max-width: 1024px) {
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .panel {
+    padding: 1.75rem 1.5rem;
+  }
+
   .inputRow {
     flex-direction: column;
     align-items: stretch;
