@@ -226,11 +226,8 @@ function App(): JSX.Element {
     <div className={styles.appShell}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          <img className={styles.brandLogo} src={"/logo.svg"} alt="McCarren logo" />
+          <img className={styles.brandLogoIcon} src={"/icon.webp"} alt="McCarren logo" /><img className={styles.brandLogo} src={"/logo.svg"} alt="McCarren logo" />
         </div>
-        <a className={styles.demoButton} href="mailto:hello@mccarren.ai">
-          Request a demo
-        </a>
       </header>
 
       <section className={styles.hero}>

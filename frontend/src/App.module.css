@@ -29,6 +29,10 @@
   height: 40px;
 }
 
+.brandLogoIcon {
+  width: 40px;
+  height: 40px;
+}
 .demoButton {
   padding: 0.65rem 1.35rem;
   background-color: #111111;
