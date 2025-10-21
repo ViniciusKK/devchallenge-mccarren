@@ -84,22 +84,6 @@
   max-width: 520px;
 }
 
-.heroCta {
-  margin-top: 2rem;
-  display: inline-flex;
-  padding: 0.8rem 1.6rem;
-  border-radius: 999px;
-  background-color: #111111;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.heroCta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.2);
-}
 
 .content {
   max-width: 1080px;
@@ -107,6 +91,40 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+}
+
+.tabBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  padding: 0.25rem;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  margin: 0 auto 2rem;
+  width: fit-content;
+}
+
+.tabButton {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.tabButton:hover {
+  color: #111111;
+}
+
+.tabButtonActive {
+  background: #111111;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.18);
 }
 
 @media (max-width: 768px) {
@@ -121,5 +139,14 @@
 
   .hero {
     margin-bottom: 2.5rem;
+  }
+
+  .tabBar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tabButton {
+    flex: 1;
   }
 }

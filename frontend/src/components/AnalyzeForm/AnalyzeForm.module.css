@@ -60,6 +60,29 @@
   font-size: 0.9rem;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.historyButton {
+  background: rgba(17, 17, 17, 0.08);
+  color: #111111;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.historyButton:hover {
+  background: rgba(17, 17, 17, 0.14);
+  transform: translateY(-1px);
+}
+
 .error {
   margin: 1rem 0 0;
   color: #d9463b;
@@ -85,5 +108,14 @@
 
   .inputRow button {
     width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .historyButton {
+    width: 100%;
+    justify-content: center;
   }
 }

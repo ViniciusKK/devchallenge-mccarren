@@ -7,35 +7,80 @@ import styles from "./CompanyProfile.module.css";
 interface CompanyProfileProps {
   profile: CompanyProfileState;
   serviceSplitMessage: string;
+  statusMessage?: string;
+  saving: boolean;
+  saveError: string;
   onReset: () => void;
   onFieldChange: (field: ProfileEditableField, value: string) => void;
   onListChange: (field: ProfileListField, index: number, value: string) => void;
   onAddListItem: (field: ProfileListField) => void;
   onRemoveListItem: (field: ProfileListField, index: number) => void;
   onSmartSplit: () => void;
+  onSave: () => void | Promise<void>;
 }
 
 function CompanyProfile({
   profile,
   serviceSplitMessage,
+  statusMessage,
+  saving,
+  saveError,
   onReset,
   onFieldChange,
   onListChange,
   onAddListItem,
   onRemoveListItem,
-  onSmartSplit
+  onSmartSplit,
+  onSave
 }: CompanyProfileProps): JSX.Element {
+  const sourceUrl = profile.source_url ?? "";
+  const canSave = Boolean(profile.id);
+  const createdLabel = profile.created_at ? new Date(profile.created_at).toLocaleString() : null;
+  const updatedLabel =
+    profile.updated_at && profile.updated_at !== profile.created_at ? new Date(profile.updated_at).toLocaleString() : null;
+  const visitDisabled = !sourceUrl;
+
   return (
     <Panel className={styles.card}>
+      {saveError && <div className={styles.errorBanner}>{saveError}</div>}
+      {statusMessage && <div className={styles.statusBanner}>{statusMessage}</div>}
+
       <header className={styles.header}>
         <div>
           <h2>Company Profile</h2>
           <p className={styles.sourceUrl}>{profile.source_url}</p>
         </div>
-        <button type="button" className={styles.ghostButton} onClick={onReset}>
-          Start over
-        </button>
+        <div className={styles.headerActions}>
+          <button type="button" className={styles.primaryButton} onClick={onSave} disabled={saving || !canSave}>
+            {saving ? "Saving…" : "Save changes"}
+          </button>
+          <a
+            className={`${styles.outlineButton} ${visitDisabled ? styles.outlineButtonDisabled : ""}`}
+            href={visitDisabled ? "#" : sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => {
+              if (visitDisabled) {
+                event.preventDefault();
+              }
+            }}
+            aria-disabled={visitDisabled}
+          >
+            Visit site
+          </a>
+          <button type="button" className={styles.ghostButton} onClick={onReset}>
+            Start over
+          </button>
+        </div>
       </header>
+
+      <div className={styles.meta}>
+        <span className={`${styles.badge} ${profile.cached ? styles.badgeSaved : styles.badgeFresh}`}>
+          {profile.cached ? "Saved profile" : "New profile"}
+        </span>
+        {createdLabel && <span className={styles.metaLine}>Created {createdLabel}</span>}
+        {updatedLabel && <span className={styles.metaLine}>Updated {updatedLabel}</span>}
+      </div>
 
       <div className={styles.fieldGrid}>
         <div className={styles.field}>

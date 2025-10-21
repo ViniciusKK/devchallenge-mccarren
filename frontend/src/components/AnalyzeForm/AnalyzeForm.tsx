@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import Panel from "../Panel/Panel";
 import styles from "./AnalyzeForm.module.css";
 
@@ -9,9 +9,10 @@ interface AnalyzeFormProps {
   error: string;
   onChange: (value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void | Promise<void>;
+  onShowHistory: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-function AnalyzeForm({ id, value, loading, error, onChange, onSubmit }: AnalyzeFormProps): JSX.Element {
+function AnalyzeForm({ id, value, loading, error, onChange, onSubmit, onShowHistory }: AnalyzeFormProps): JSX.Element {
   return (
     <Panel id={id} className={styles.panel}>
       <div className={styles.copy}>
