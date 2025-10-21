@@ -1,0 +1,47 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.input {
+  flex: 1;
+  background-color: #ffffff;
+}
+
+.removeButton {
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+  box-shadow: none;
+}
+
+.removeButton:hover:not(:disabled) {
+  background: rgba(37, 99, 235, 0.2);
+  transform: none;
+  box-shadow: none;
+}
+
+.invalid input {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.invalid::after {
+  content: "Check format";
+  color: #f97316;
+  font-size: 0.8rem;
+}
+
+.emptyItem {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
